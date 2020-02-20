@@ -1,2 +1,2 @@
-# configuration
-Configuration Resources
+# Configuration
+My personal configuration guides/notes
