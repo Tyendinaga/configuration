@@ -1,0 +1,65 @@
+################
+# Install Java #
+################
+
+sudo yum install java-1.8.0-openjdk-headless
+
+#########################
+# Create System Account #
+#########################
+
+useradd -r -m -U -d /opt/nexus -s /bin/bash nexus
+
+##################
+# jump into User #
+##################
+
+su - nexus
+
+#####################
+# Download Software #
+#####################
+
+# Download the tar file
+wget https://sonatype-download.global.ssl.fastly.net/repository/repositoryManager/3/nexus-3.22.0-02-unix.tar.gz
+
+# Extract it
+tar xvzf nexus-3.22.0-02-unix.tar.gz
+
+# Exit User
+exit
+
+#####################
+# Configure SystemD #
+#####################
+
+# Create Unit File
+sudo nano /etc/systemd/system/nexus.service
+
+# Reload Daemons
+systemctl daemon-reload
+
+# Start
+systemctl start nexus
+
+# Check Status
+systemctl status nexus
+
+# Auto Run
+systemctl enable nexus
+
+##################
+# Firewall Setup #
+##################
+
+sudo firewall-cmd --permanent --zone=public --add-port=8081/tcp
+sudo firewall-cmd --reload
+
+# TODO: Put Nexus behind an Nginx reverse proxy
+
+
+
+
+
+
+
