@@ -57,6 +57,24 @@ sudo firewall-cmd --reload
 
 # TODO: Put Nexus behind an Nginx reverse proxy
 
+#################
+# Install Nginx #
+#################
+
+# Install
+sudo yum install nginx
+
+# Firewall Config
+sudo firewall-cmd --permanent --zone=public --add-service=http 
+sudo firewall-cmd --permanent --zone=public --add-service=https
+sudo firewall-cmd --reload
+
+# Start and enable
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+
+
 
 
 
