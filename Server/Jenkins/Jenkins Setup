@@ -1,0 +1,11 @@
+################
+# Install Java #
+################
+
+sudo yum install java-1.8.0-openjdk-headless
+
+#################
+# Install Maven #
+#################
+
+# sudo yum install maven
