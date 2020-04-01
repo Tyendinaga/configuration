@@ -48,15 +48,6 @@ systemctl status nexus
 # Auto Run
 systemctl enable nexus
 
-##################
-# Firewall Setup #
-##################
-
-sudo firewall-cmd --permanent --zone=public --add-port=8081/tcp
-sudo firewall-cmd --reload
-
-# TODO: Put Nexus behind an Nginx reverse proxy
-
 #################
 # Install Nginx #
 #################
@@ -73,10 +64,23 @@ sudo firewall-cmd --reload
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
+# Go To NGINX Configuration
+cd /etc/nginx
 
+# Add proxy_params (Was missing on Centos)
+sudo nano proxy_params
 
+# Todo: Move server config into sites-enabled/sites-available
+sudo nano nginx.conf
 
+# Test Configuration
+sudo nginx -t
 
+# Reload Nginx Config
+sudo systemctl reload nginx
+
+# Update SELinux so it wont cause a Gateway Error
+setsebool -P httpd_can_network_connect true
 
 
 
