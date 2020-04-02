@@ -70,8 +70,17 @@ cd /etc/nginx
 # Add proxy_params (Was missing on Centos)
 sudo nano proxy_params
 
-# Todo: Move server config into sites-enabled/sites-available
+# Add Directories
+mkdir sites-available
+mkdir sites-enabled
+
+# Add Sites Enabled to Config
 sudo nano nginx.conf
+
+# Add and Link site
+cd sites-available
+sudo nano nexus.example.com
+ln -s /etc/nginx/sites-available/nexus.example.com /etc/nexus/sites-enabled
 
 # Test Configuration
 sudo nginx -t
