@@ -1,0 +1,41 @@
+########################
+# Database Preparation #
+########################
+
+# Create a Postgres Role and Database for this. 
+
+#########################
+# Install Prerequisites #
+#########################
+
+sudo yum install java-11-openjdk-headless
+
+################
+# Service User #
+################
+
+# Create Service Account
+useradd -r -m -U -d /opt/sonarqube -s /bin/bash sonarqube
+
+# Login as Account
+su - sonarqube
+
+################
+# Installation #
+################
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.2.0.32929.zip
+unzip sonarqube-8.2.0.32929.zip
+rm sonarqube-8.2.0.32929.zip
+cd sonarqube-8.2.0.32929
+mv * ../
+cd ..
+rmdir sonarqube-8.2.0.32929
+
+#################
+# Configuration #
+#################
+
+# Set Database Stuff
+nano /opt/sonarqube/config/sonar.properties
+
