@@ -80,7 +80,7 @@ sudo nano nginx.conf
 # Add and Link site
 cd sites-available
 sudo nano nexus.example.com
-ln -s /etc/nginx/sites-available/nexus.example.com /etc/nexus/sites-enabled
+ln -s /etc/nginx/sites-available/nexus.example.com /etc/nginx/sites-enabled
 
 # Test Configuration
 sudo nginx -t
